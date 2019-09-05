@@ -1,4 +1,4 @@
-public abstract class Elemento {
+public abstract class Elemento implements IPrototype<Elemento>{
     protected int codigo;
     protected int precio;
     protected String nombre;

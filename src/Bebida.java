@@ -13,4 +13,14 @@ public class Bebida extends Elemento {
             return "";
         }
     }
+
+    @Override
+    public Elemento clone() {
+        return null;
+    }
+
+    @Override
+    public Elemento deepClone() {
+        return null;
+    }
 }

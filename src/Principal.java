@@ -14,4 +14,14 @@ public class Principal extends Elemento{
             return "";
         }
     }
+
+    @Override
+    public Elemento clone() {
+        return null;
+    }
+
+    @Override
+    public Elemento deepClone() {
+        return null;
+    }
 }
