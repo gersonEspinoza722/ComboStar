@@ -22,6 +22,6 @@ public class Principal extends Elemento{
 
     @Override
     public Elemento deepClone() {
-        return null;
+        return new Principal(this.codigo, this.precio, this.nombre);
     }
 }

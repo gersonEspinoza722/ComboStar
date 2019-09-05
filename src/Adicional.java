@@ -22,6 +22,6 @@ public class Adicional extends Elemento {
 
     @Override
     public Elemento deepClone() {
-        return null;
+        return new Adicional(this.codigo, this.precio, this.nombre);
     }
 }

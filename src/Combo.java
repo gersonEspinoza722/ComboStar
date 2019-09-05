@@ -55,15 +55,15 @@ public class Combo implements IPrototype<Combo>{
         }
 
         public ComboBuilder setPrincipal(Principal principal) {
-            this.principalB = principal;//Sacarlo clonado de algún lado, mandarlo de entrada completo
+            this.principalB = (Principal) principal.deepClone();//Sacarlo clonado de algún lado, mandarlo de entrada completo
             return this;
         }
         public ComboBuilder addAdicional(Adicional adicional) {
-            this.adicionalesB.add(adicional);//Sacarlo clonado de algún lado, mandarlo de entrada completo
+            this.adicionalesB.add((Adicional) adicional.deepClone());//Sacarlo clonado de algún lado, mandarlo de entrada completo
             return this;
         }
         public ComboBuilder addBebida(Bebida bebida) {
-            this.bebidasB.add(bebida);//Sacarlo clonado de algún lado, mandarlo de entrada completo
+            this.bebidasB.add((Bebida) bebida.deepClone());//Sacarlo clonado de algún lado, mandarlo de entrada completo
             return this;
         }
 
