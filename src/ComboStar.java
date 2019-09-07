@@ -1,10 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class ComboStar {
 
-
+    private static ComboStar singleton = null;
         private static ComboListImp combos = new ComboListImp("Combos predefinidos");
         private static ElementoListImp bebidas = new ElementoListImp("Bebidas");
         private static ElementoListImp adicionales = new ElementoListImp("Adicionales");
         private static ElementoListImp principales = new ElementoListImp("Principales");
+        private static List<Combo> combosAceptados = new ArrayList<>();
+    private static int comboPred = 0;
+
+    public static ComboStar getInstance(){
+        if(singleton == null){
+            singleton = new ComboStar();
+        }
+        return singleton;
+    }
+
+    public static int getComboPred() {
+        return comboPred;
+    }
+
+    public static void setComboPred(int comboPred) {
+        ComboStar.comboPred = comboPred;
+    }
+
+
+
+
+    public static void addComboAceptado(Combo combo){
+        combosAceptados.add(combo);
+    }
 
     public static Combo.ComboBuilder getBuilder() {
         return builder;
@@ -12,8 +39,11 @@ public class ComboStar {
 
     private static Combo.ComboBuilder builder=new Combo.ComboBuilder();
 
-    public static ComboListImp getCombos() {
-        return combos;
+    public static List<Combo> getCombos() {
+        return combos.getCombos();
+    }
+    public static List<Combo> getCombosAceptados() {
+        return combosAceptados;
     }
 
     public static ElementoListImp getBebidas() {

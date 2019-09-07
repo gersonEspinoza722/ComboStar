@@ -14,21 +14,23 @@ public class ConstruirCombo {
     private JPanel ventanaBuild;
     private Combo comboEnConstruccion;
     private static int codeComboCambiar;
+    private ComboStar comboStar = ComboStar.getInstance();
 
 
-    public static void main(String[] args) {
+    public static void main() {
+
         frame = new JFrame("ConstruirCombo");
         frame.setContentPane(new ConstruirCombo().ventanaBuild);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
-        if(codeComboCambiar>0){
-            Combo combo= ComboStar.getCombos().getCombos().get(codeComboCambiar);
+       if(ComboStar.getComboPred()>0){
+            Combo combo= ComboStar.getCombos().get(ComboStar.getComboPred());
             ComboStar.getBuilder().setPrincipal(combo.getPrincipal());
             ComboStar.getBuilder().setBebidas(combo);
             ComboStar.getBuilder().setAdicionals(combo);
-
+            ComboStar.setComboPred(0);
         }
     }
 
@@ -41,8 +43,12 @@ public class ConstruirCombo {
 
                 String codestr= codeBebida.getText();
                 int code= Integer.parseInt(codestr);
+
                 Bebida escogida=(Bebida) ComboStar.getBebidas().buscar(code);
+
                 ComboStar.getBuilder().addBebida(escogida);
+
+
             }
         });
         agregarAdicionalButton.addActionListener(new ActionListener() {
@@ -53,6 +59,7 @@ public class ConstruirCombo {
                 int code= Integer.parseInt(codestr);
                 Adicional escogida=(Adicional) ComboStar.getAdicionales().buscar(code);
                 ComboStar.getBuilder().addAdicional(escogida);
+                codeAdicional.setText(escogida.getNombre());
             }
         });
         agregarPrincipalButton.addActionListener(new ActionListener() {
@@ -71,6 +78,7 @@ public class ConstruirCombo {
                 comboEnConstruccion =  ComboStar.getBuilder().build();
                 Resultado.main();
                 frame.setVisible(false);
+                ComboStar.addComboAceptado(comboEnConstruccion);
 
             }
         });

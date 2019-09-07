@@ -5,12 +5,18 @@ public class Combo implements IPrototype<Combo>{
     private int costoTotal; //Se sumará el costo de todos los elementos al hacer build();
     private List<Adicional> adicionales;
     private List<Bebida> bebidas;
-    private Principal principal;
 
-    private Combo(Principal principal, List<Bebida> bebidas, List<Adicional> adicionales) {
-        this.adicionales=adicionales;
-        this.bebidas=bebidas;
-        this.principal=principal;
+    public int getCostoTotal() {
+        return costoTotal;
+    }
+
+    private Principal principal;
+    private ComboStar comboStar;
+
+    private Combo(Principal pprincipal, List<Bebida> pbebidas, List<Adicional> padicionales) {
+        this.adicionales=padicionales;
+        this.bebidas=pbebidas;
+        this.principal=pprincipal;
 
         this.costoTotal=0;
 
@@ -75,23 +81,35 @@ public class Combo implements IPrototype<Combo>{
 
         @Override
         public Combo build() {
-            Combo comboFinal= new Combo(principalB,bebidasB,adicionalesB);
+            List<Adicional> adic=new ArrayList<>();
+            List<Bebida> beb=new ArrayList<>();
+            for(int i=0;i<adicionalesB.size();i++){
+                Adicional adicEl = new Adicional(adicionalesB.get(i).getCodigo(), adicionalesB.get(i).getPrecio(), adicionalesB.get(i).getNombre());
+                adic.add(adicEl);
+            }
+
+            for(int i=0;i<bebidasB.size();i++){
+                Bebida bebEl = new Bebida(bebidasB.get(i).getCodigo(), bebidasB.get(i).getPrecio(), bebidasB.get(i).getNombre());
+                beb.add(bebEl);
+            }
+            Combo c = new Combo(principalB,beb,adic);
             this.clean();
-            return comboFinal;
+            return c;
         }
 
-        public void clean(){this.adicionalesB.clear(); this.bebidasB.clear(); this.principalB=null;}
+        public ComboBuilder clean(){this.adicionalesB.clear(); this.bebidasB.clear(); this.principalB=null; return this;}
 
         public ComboBuilder setPrincipal(Principal principal) {
             this.principalB = (Principal) principal.deepClone();//Sacarlo clonado de algún lado, mandarlo de entrada completo
             return this;
         }
         public ComboBuilder addAdicional(Adicional adicional) {
-            this.adicionalesB.add((Adicional) adicional.deepClone());//Sacarlo clonado de algún lado, mandarlo de entrada completo
+            Adicional escogido=adicional.deepClone();
+            this.adicionalesB.add(escogido);//Sacarlo clonado de algún lado, mandarlo de entrada completo
             return this;
         }
         public ComboBuilder addBebida(Bebida bebida) {
-            this.bebidasB.add((Bebida) bebida.deepClone());//Sacarlo clonado de algún lado, mandarlo de entrada completo
+            this.bebidasB.add(bebida.deepClone());//Sacarlo clonado de algún lado, mandarlo de entrada completo
             return this;
         }
         public ComboBuilder setBebidas(Combo combo) {
