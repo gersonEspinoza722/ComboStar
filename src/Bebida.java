@@ -15,12 +15,12 @@ public class Bebida extends Elemento {
     }
 
     @Override
-    public Elemento clone() {
+    public Bebida clone() {
         return null;
     }
 
     @Override
-    public Elemento deepClone() {
+    public Bebida deepClone() {
         return new Bebida(this.codigo, this.precio, this.nombre);
     }
 }

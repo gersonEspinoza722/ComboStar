@@ -16,12 +16,12 @@ public class Principal extends Elemento{
     }
 
     @Override
-    public Elemento clone() {
+    public Principal clone() {
         return null;
     }
 
     @Override
-    public Elemento deepClone() {
+    public Principal deepClone() {
         return new Principal(this.codigo, this.precio, this.nombre);
     }
 }

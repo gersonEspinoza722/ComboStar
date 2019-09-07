@@ -23,6 +23,30 @@ public class Combo implements IPrototype<Combo>{
         costoTotal+=principal.getPrecio();
     }
 
+    public List<Adicional> getAdicionales() {
+        return adicionales;
+    }
+
+    public void setAdicionales(List<Adicional> adicionales) {
+        this.adicionales = adicionales;
+    }
+
+    public List<Bebida> getBebidas() {
+        return bebidas;
+    }
+
+    public void setBebidas(List<Bebida> bebidas) {
+        this.bebidas = bebidas;
+    }
+
+    public Principal getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
+    }
+
     @Override
     public Combo deepClone() {
         List<Bebida> listBebidas = new ArrayList<>();

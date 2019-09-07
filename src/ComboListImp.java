@@ -26,6 +26,10 @@ public class ComboListImp implements IPrototype<ComboListImp>{
         this.combos = combos;
     }
 
+    public void addCombo(Combo combo){
+        combos.add(combo);
+    }
+
     @Override
     public ComboListImp clone() {
         return null;
@@ -38,6 +42,8 @@ public class ComboListImp implements IPrototype<ComboListImp>{
             Combo cloneCombo = combo.deepClone();
             cloneCombos.add(cloneCombo);
         }
-        return null;
+        ComboListImp clone = new ComboListImp(this.comboListName);
+        clone.setCombos(cloneCombos);
+        return clone;
     }
 }
