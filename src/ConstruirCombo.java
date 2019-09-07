@@ -14,7 +14,7 @@ public class ConstruirCombo {
     private JPanel ventanaBuild;
     private Combo comboEnConstruccion;
     private static int codeComboCambiar;
-    private Combo.ComboBuilder builder;
+
 
     public static void main(String[] args) {
         frame = new JFrame("ConstruirCombo");
@@ -22,11 +22,12 @@ public class ConstruirCombo {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        //codeComboCambiar = code; SACAR CÓDIGO
+
         if(codeComboCambiar>0){
-            //builder.setPrincipal();
-            //builder.addBebida();
-            //builder.addAdicional();
+            Combo combo= ComboStar.getCombos().getCombos().get(codeComboCambiar);
+            ComboStar.getBuilder().setPrincipal(combo.getPrincipal());
+            ComboStar.getBuilder().setBebidas(combo);
+            ComboStar.getBuilder().setAdicionals(combo);
 
         }
     }
@@ -37,35 +38,37 @@ public class ConstruirCombo {
         agregarBebidaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //Bebida escogida;
+
                 String codestr= codeBebida.getText();
                 int code= Integer.parseInt(codestr);
-                //builder.addBebida(escogida);
+                Bebida escogida=(Bebida) ComboStar.getBebidas().buscar(code);
+                ComboStar.getBuilder().addBebida(escogida);
             }
         });
         agregarAdicionalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //Adicional escogido;
+
                 String codestr= codeAdicional.getText();
                 int code= Integer.parseInt(codestr);
-                //builder.addAdicional(escogido);
+                Adicional escogida=(Adicional) ComboStar.getAdicionales().buscar(code);
+                ComboStar.getBuilder().addAdicional(escogida);
             }
         });
         agregarPrincipalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //Principal escogido;
+
                 String codestr= codePrincipal.getText();
                 int code= Integer.parseInt(codestr);
-                //builder.setPrincipal(escogido);
+                Principal escogida=(Principal) ComboStar.getPrincipales().buscar(code);
+                ComboStar.getBuilder().setPrincipal(escogida);
             }
         });
         CONSTRUIRMENÚButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                comboEnConstruccion = builder.build();
-                //Meterlo en alguna lista
+                comboEnConstruccion =  ComboStar.getBuilder().build();
                 Resultado.main();
                 frame.setVisible(false);
 

@@ -1,12 +1,34 @@
 public class ComboStar {
 
-    public static void main (String [ ] args) {
 
-        ComboListImp combos = new ComboListImp("Combos predefinidos");
-        ElementoListImp bebidas = new ElementoListImp("Bebidas");
-        ElementoListImp adicionales = new ElementoListImp("Adicionales");
-        ElementoListImp principales = new ElementoListImp("Principales");
+        private static ComboListImp combos = new ComboListImp("Combos predefinidos");
+        private static ElementoListImp bebidas = new ElementoListImp("Bebidas");
+        private static ElementoListImp adicionales = new ElementoListImp("Adicionales");
+        private static ElementoListImp principales = new ElementoListImp("Principales");
 
+    public static Combo.ComboBuilder getBuilder() {
+        return builder;
+    }
+
+    private static Combo.ComboBuilder builder=new Combo.ComboBuilder();
+
+    public static ComboListImp getCombos() {
+        return combos;
+    }
+
+    public static ElementoListImp getBebidas() {
+        return bebidas;
+    }
+
+    public static ElementoListImp getAdicionales() {
+        return adicionales;
+    }
+
+    public static ElementoListImp getPrincipales() {
+        return principales;
+    }
+
+    public ComboStar() {
         Bebida bebida1 = new Bebida(0, 800, "Gaseosa");
         Bebida bebida2 = new Bebida(1, 1000, "Cafe");
         Bebida bebida3 = new Bebida(2, 800, "Te");
@@ -41,7 +63,6 @@ public class ComboStar {
                 .addBebida(bebida1.deepClone())
                 .addAdicional(adicional6.deepClone())
                 .addAdicional(adicional5.deepClone()).build();
-
         combos.addCombo(combo1);
         combos.addCombo(combo2);
         combos.addCombo(combo3);
@@ -70,4 +91,7 @@ public class ComboStar {
         principales.addElemento(principal6);
 
     }
+
+
+
 }

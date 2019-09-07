@@ -6,6 +6,7 @@ public class ComboListImp implements IPrototype<ComboListImp>{
     private String comboListName;
     private List<Combo> combos = new ArrayList<Combo>();
 
+
     public ComboListImp(String comboListName) {
         this.comboListName = comboListName;
     }

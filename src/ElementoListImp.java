@@ -10,6 +10,15 @@ public class ElementoListImp implements IPrototype<ElementoListImp> {
         this.elementoListName = elementoListName;
     }
 
+    public Elemento buscar(int i) {
+        for (int x = 0; x < elementos.size(); x++) {
+            if (elementos.get(x).getCodigo() == i) {
+                return elementos.get(x);
+            }
+        }
+        return null;
+    }
+
     public String getElementoListName() {
         return elementoListName;
     }

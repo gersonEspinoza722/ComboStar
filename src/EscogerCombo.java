@@ -24,7 +24,7 @@ public class EscogerCombo {
             public void actionPerformed(ActionEvent e) {
                 String x= codeCombo.getText();
                 int code=Integer.parseInt(x);
-                ConstruirCombo.main(code);
+                //ConstruirCombo.main();
             }
         });
         aceptarButton.addActionListener(new ActionListener() {
